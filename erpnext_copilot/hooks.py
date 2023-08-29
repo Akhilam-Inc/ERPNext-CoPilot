@@ -199,3 +199,5 @@ app_license = "MIT"
 # auth_hooks = [
 #	"erpnext_copilot.auth.validate"
 # ]
+
+website_route_rules = [{'from_route': '/erpnextcopilot/<path:app_path>', 'to_route': 'erpnextcopilot'},]

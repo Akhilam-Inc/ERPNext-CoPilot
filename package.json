@@ -1,0 +1,14 @@
+{
+  "name": "erpnext_copilot",
+  "version": "1.0.0",
+  "description": "ERPNext Copilot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd erpnextcopilot && yarn dev",
+    "build": "cd erpnextcopilot && yarn build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

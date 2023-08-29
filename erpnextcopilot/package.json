@@ -1,0 +1,50 @@
+{
+  "name": "erpnextcopilot",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/assets/erpnext_copilot/erpnextcopilot/ && yarn copy-html-entry",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "copy-html-entry": "cp ../erpnext_copilot/public/erpnextcopilot/index.html ../erpnext_copilot/www/erpnextcopilot.html"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.2.0",
+    "apexcharts": "^3.41.1",
+    "final-form": "^4.20.10",
+    "framer-motion": "^10.16.1",
+    "frappe-react-sdk": "^1.2.9",
+    "lucide-react": "^0.268.0",
+    "nanoid": "^4.0.2",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-dom": "^18.2.0",
+    "react-final-form": "^6.5.9",
+    "react-hook-form": "^7.45.4",
+    "react-markdown": "^8.0.7",
+    "react-router-dom": "^6.15.0",
+    "react-select": "^5.7.4",
+    "react-syntax-highlighter": "^15.5.0",
+    "rehype-raw": "^6.1.1",
+    "remark-gfm": "^3.0.1",
+    "socket.io-client": "^4.5.1",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "vite": "^4.4.5"
+  }
+}
