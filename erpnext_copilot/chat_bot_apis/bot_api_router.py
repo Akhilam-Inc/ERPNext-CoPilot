@@ -1,17 +1,22 @@
 import frappe
-from erpnext_copilot.chat_bot_apis.item_query import get_chatbot_response as sales_person_bot_response
-from erpnext_copilot.chat_bot_apis.employee_query import get_chatbot_response as employee_response
+from erpnext_copilot.chat_bot_apis.sales_person_helper import get_chatbot_response as sales_person_bot_response
 
 
 
 @frappe.whitelist()
 def get_response_as_per_role(session_id: str, prompt_message: str) -> str:
-    roles = frappe.get_roles(frappe.session.user)
-    if "Sales Person ChatBot" in roles:
-        response = sales_person_bot_response(session_id,prompt_message)
-    else:
-        response = employee_response(session_id,prompt_message)
+    response = sales_person_bot_response(session_id,prompt_message)
     return response
+
+    """
+    Incase we want response as per roles.
+    """
+    # roles = frappe.get_roles(frappe.session.user)
+    # if "Sales Person ChatBot" in roles:
+    #     response = sales_person_bot_response(session_id,prompt_message)
+    # else:
+    #     response = employee_response(session_id,prompt_message)
+    # return response
 
 @frappe.whitelist()
 def get_all_names_for_doctype(doctype):

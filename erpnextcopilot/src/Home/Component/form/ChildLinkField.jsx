@@ -7,8 +7,6 @@ const ChildLinkField = ({ name, value,
     reference,
     schema, onChange }) => {
 
-
-      console.log("INPUT CHANGE");
     const { call: callLinkDataRef } = useFrappePostCall('erpnext_copilot.chat_bot_apis.bot_api_router.get_names_by_field_value')
     const { call: callLinkData } = useFrappePostCall('erpnext_copilot.chat_bot_apis.bot_api_router.get_all_names_for_doctype')
 
@@ -35,7 +33,7 @@ const ChildLinkField = ({ name, value,
     }
 
     useEffect(() => {
-      console.log("DATA CHANGED " ,reference);
+      
         if (reference != null){
           callLinkDataRef({
             doctype: schema.doctype,
@@ -43,8 +41,6 @@ const ChildLinkField = ({ name, value,
             field_value: reference
         }).then((response) => {
             setOptions(response.message);
-            console.log(options);
-            console.log(response.message);
         })
             .catch((e) => {
                 console.error(e);
@@ -61,8 +57,6 @@ const ChildLinkField = ({ name, value,
             field_value: reference
         }).then((response) => {
             setOptions(response.message);
-            console.log(options);
-            console.log(response.message);
         })
             .catch((e) => {
                 console.error(e);

@@ -28,12 +28,11 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import LinkField from "./LinkField";
+
 import CopyToClipboardButton from "./CopyToClipboardButton";
-import TableRenderer from "./TableRenderer";
-import ChartRenderer from "./ChartRenderer";
-import StatRenderer from "./StatRenderer";
-import DynamicFormView from "./DynamicFormNew";
+import TableRenderer from "../views/TableRenderer";
+import ChartRenderer from "../views/ChartRenderer";
+import DynamicFormView from "../form/DynamicFormNew";
 
 const DynamicMessageRenderer = ({ message, fromAI, onChange , onFormSubmit}) => {
 
@@ -57,9 +56,9 @@ const DynamicMessageRenderer = ({ message, fromAI, onChange , onFormSubmit}) => 
     case "chart":
       messageWidget = <ChartRenderer key={message.id} message={message} />
       break;
-    case "stat":
-      messageWidget = <StatRenderer message={message} />
-      break;
+    // case "stat":
+    //   messageWidget = <StatRenderer message={message} />
+    //   break;
     case "multiselect":
       messageWidget = <>
         <CheckboxGroup colorScheme='green' onChange={(e) => onChange(message.type, e)}>

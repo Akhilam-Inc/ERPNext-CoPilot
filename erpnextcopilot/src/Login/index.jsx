@@ -25,7 +25,7 @@ import { useForm } from 'react-hook-form'
 import { useFrappeAuth } from 'frappe-react-sdk'
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
-import { AlertBanner } from '../common/AlertBanner';
+import { AlertBanner } from '../common/Alert';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().email()
@@ -79,10 +79,10 @@ export default function SignupCard() {
 
                     <Stack align={'center'}>
                         <Heading fontSize={'4xl'} textAlign={'center'}>
-                            Sign up
+                            Welocome to ERPNext CoPilot
                         </Heading>
                         <Text fontSize={'lg'} color={'gray.600'}>
-                            to enjoy all of our cool features ✌️
+                            A natural language interface for ERPNext!
                         </Text>
                     </Stack>
                     <Box

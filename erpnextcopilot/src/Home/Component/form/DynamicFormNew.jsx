@@ -7,21 +7,13 @@ import {
     Button,
     ButtonGroup,
     Heading,
-    Icon,
-    Link,
     FormControl,
     FormLabel,
     FormErrorMessage,
     Input,
     Checkbox,
-    Progress,
-    Radio,
-    RadioGroup,
     Stack,
-    Text,
     Textarea,
-    Card,
-    CardBody,
     useToast
 } from "@chakra-ui/react";
 
@@ -32,13 +24,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
 
-
-
-    // from Frappe!
     const onSubmit = async values => {
-
-        // console.log(items);
-        // console.log(formValues);
 
         var emptyFields = Object.entries(formValues).filter((e) => {
             return e[1] == "" || e[1] == []
@@ -58,7 +44,6 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
         if (items.items && items.items.length > 0) {
 
             var finalItems = items.items.filter((e) => {
-                console.log(e, " ", !Object.values(e).every((value) => value == ""));
                 return !Object.values(e).every((value) => value == "");
             });
 
@@ -75,103 +60,11 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
         }
     };
 
-    const formDummyJson = {
-        "values": {
-            "customer": "Raj",
-            "delivery_date": "2023-08-30",
-            "items": [
-                {
-                    "item_code": "apple_1",
-                    "item_name": "Apple",
-                    "qty": "5",
-                    "rate": "150"
-                },
-                {
-                    "item_code": "banana_2",
-                    "item_name": "Banana",
-                    "qty": "12",
-                    "rate": "50"
-                }
-            ]
-        },
-        "parent": [
-            {
-                "label": "Customer",
-                "fieldname": "customer",
-                "fieldtype": "Link",
-                "options": "Customer",
-                "reqd": 1
-            },
-            {
-                "label": "Delivery Date",
-                "fieldname": "delivery_date",
-                "fieldtype": "Date",
-                "reqd": 1
-            },
-            {
-                "label": "Order Type",
-                "fieldname": "order_type",
-                "fieldtype": "Select",
-                "options": ["Sales Order", "Shopping Cart", "Maintenance"],
-                "reqd": 1
-            },
-            {
-                "label": "Maintain Stock",
-                "fieldname": "maintain_stock",
-                "fieldtype": "Check",
-                "reqd": 1
-            },
-            {
-                "label": "Narration",
-                "fieldname": "narration",
-                "fieldtype": "TextArea",
-                "reqd": 1
-            },
-            {
-                "label": "Items",
-                "fieldname": "items",
-                "fieldtype": "Table",
-                "options": "Sales Order Item",
-                "reqd": 1,
-            },
-        ],
-        "children": {
-            "Sales Order Item": [
-                {
-                    "label": "Item Code",
-                    "fieldname": "item_code",
-                    "fieldtype": "Link",
-                    "options": "Item",
-                    "data_like": "item_name",
-                    "reqd": 1
-                },
-                {
-                    "label": "Item Name",
-                    "fieldname": "item_name",
-                    "fieldtype": "Data",
-                    "reqd": 1
-                },
-                {
-                    "label": "Qty",
-                    "fieldname": "qty",
-                    "fieldtype": "Data",
-                    "reqd": 1
-                },
-                {
-                    "label": "Rate",
-                    "fieldname": "rate",
-                    "fieldtype": "Data",
-                    "reqd": 1
-                },
-            ],
-        }
-    };
     const toast = useToast();
     const [date, setDate] = useState(new Date());
     const [items, setItems] = useState({});
 
     var formJsonValues = formJson.parent_fields.filter((e) => e.reqd == 1 && ["Link", "Select"].includes(e.fieldtype)).map((e) => {
-
         var json = {}
         json[e.fieldname] = formJson.values[e.fieldname] ?? ""
         return json
@@ -194,9 +87,7 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
 
 
     const onItemChange = (payload) => {
-        console.log("ITEMS ", payload);
         setItems({ "items": Object.values(payload) });
-
     }
 
 
@@ -249,7 +140,6 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
                                                 type="text"
                                                 id={element.fieldname}
                                                 placeholder={element.label}
-                                                // defaultValue={defaultValue}
                                                 {...register(element.fieldname, {
                                                     required: element.reqd == 1,
                                                     message: "Please Enter " + element.fieldname
@@ -277,8 +167,6 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
                                                     message: "Please Enter " + element.fieldname,
                                                 })}
                                             />
-                                            {/* <Error name={element.fieldname} />
-                                     */}
                                             {errors && errors[element.fieldname]?.message &&
                                                 <FormErrorMessage >{errors[element.fieldname]?.message}</FormErrorMessage>
                                             }
@@ -368,7 +256,7 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
                                             json[fieldname] = "";
                                             return json;
                                         });
-                                        console.log(listObj);
+                                        
 
                                         listObj.forEach(element => {
                                             Object.assign(singleRow, element);
@@ -381,14 +269,14 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
                                             json[fieldname] = "";
                                             return json;
                                         });
-                                        console.log(listObj);
+                                    
 
                                         listObj.forEach(element => {
                                             Object.assign(singleRow, element);
                                         });
 
                                     }
-                                    console.log("ITEMSS ", values);
+                                
 
 
                                     if (!items["items"]) {
@@ -413,7 +301,6 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
                                         <FormLabel >{element.label}</FormLabel>
                                         <TableDemo key={element.fieldtype} values={values} singleRowData={singleRow} schemas={schemas} onItemChange={onItemChange} />
                                     </>;
-                                    // elementWidget =  <Box key = 'empty' h='20px'></Box>;
                                     break;
                             }
 
@@ -442,88 +329,8 @@ const DynamicFormView = ({ title, formJson, onFormSubmit }) => {
     );
 };
 
-function camelCase(str) {
-    // Using replace method with regEx
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return index == 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
-}
-
-// const AdaptedTextarea = ({ input, meta, ...rest }) => (
-//     <Textarea {...input} {...rest} isInvalid={meta.error && meta.touched} />
-// );
-
-// const CheckboxControl = ({ name, defaultValue, children }) => {
-//     const {
-//         input: { checked, ...input },
-//         meta: { error, touched, invalid }
-//     } = useField(name, {
-//         type: "checkbox" // important for RFF to manage the checked prop
-//     });
-//     return (
-//         <FormControl isInvalid={touched && invalid} my={4}>
-//             <Checkbox {...input} isInvalid={touched && invalid} my={4} {...register(name)} defaultValue={defaultValue}>
-//                 {children}
-//             </Checkbox>
-//             <FormErrorMessage>{error}</FormErrorMessage>
-//         </FormControl>
-//     );
-// };
-
-// const AdaptedRadioGroup = ({ input, meta, label, children, defaultValue }) => (
-//     <FormControl isInvalid={meta.touched && meta.invalid} my={4}>
-//         <FormLabel htmlFor={input.name}>{label}</FormLabel>
-//         <RadioGroup {...input} defaultValue={defaultValue}>{children}</RadioGroup>
-//         <FormErrorMessage>{meta.error}</FormErrorMessage>
-//     </FormControl>
-// );
-
-// const Control = ({ name, defaultValue, ...rest }) => {
-//     const {
-//         meta: { error, touched }
-//     } = useField(name,
-
-//         { subscription: { touched: true, error: true } });
-//     return <FormControl {...rest} isInvalid={error && touched} defaultValue={defaultValue} />;
-// };
-
-// const Error = ({ name }) => {
-//     const {
-//         meta: { error }
-//     } = useField(name, { subscription: { error: true } });
-//     return <FormErrorMessage>{error}</FormErrorMessage>;
-// };
-
-
-
-// const TextareaControl = ({ name, label, defaultValue }) => (
-//     <Control name={name} my={4}>
-//         <FormLabel htmlFor={name}>{label}</FormLabel>
-//         <Field
-//             name={name}
-//             component={AdaptedTextarea}
-//             placeholder={label}
-//             id={name}
-//             defaultValue={defaultValue}
-//         />
-//         <Error name={name} />
-//     </Control>
-// );
-
-// const PercentComplete = props => {
-//     const form = useForm();
-//     const numFields = form.getRegisteredFields().length;
-//     const numErrors = Object.keys(form.getState().errors).length;
-//     return (
-//         <Progress
-//             value={numFields === 0 ? 0 : ((numFields - numErrors) / numFields) * 100}
-//             {...props}
-//         />
-//     );
-// };
-
-
 export default DynamicFormView;
+
 function camelToTitleCase(str) {
     var camel = snakeToCamel(str);
     var pascalCase = camel.charAt(0).toUpperCase() + camel.substr(1);

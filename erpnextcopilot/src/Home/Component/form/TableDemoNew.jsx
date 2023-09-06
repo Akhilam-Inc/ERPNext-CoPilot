@@ -4,14 +4,8 @@ import {
   Thead,
   Tbody,
   Tr,
-  Th,
   Td,
   TableContainer,
-  TabPanels,
-  TabPanel,
-  TabList,
-  Tabs,
-  Tab,
   Button
 } from '@chakra-ui/react'
 import { AddIcon, DeleteIcon, CheckIcon } from "@chakra-ui/icons";
@@ -133,8 +127,6 @@ function TableDemo({ key, values, singleRowData, schemas, onItemChange }) {
                         {Object.entries(row).map((entry) => {
                           var key = entry[0]
                           var value = entry[1]
-
-                          console.log( key , value , schemas[key] , row[schemas[key]])
                           return <>
                             <Td padding="none" component="th" scope="row">
                               {schemas[key].type == "Link" ?
