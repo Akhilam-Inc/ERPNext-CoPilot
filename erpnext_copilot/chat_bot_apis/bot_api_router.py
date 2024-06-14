@@ -49,33 +49,3 @@ def submit_form(form_values):
         frappe.log_error(frappe.get_traceback(), "Form Creation")
         return {}    
 
-@frappe.whitelist()
-def get_link_field_data(doctype):
-    # data = frappe.db.sql("""
-    #             SELECT name as value, name as label FROM `%(doctype)s`
-    #         """,{
-    #             "doctype" : "tab{}".format(doctype)
-    #         })
-    
-    return [
-        {
-            "value" : "Raj",
-            "label" : "Raj"
-        },
-        {
-            "value" : "Parth",
-            "label" : "Parth"
-        },
-        {
-            "value" : "Shivam",
-            "label" : "Shivam"
-        },
-        {
-            "value" : "Thakor",
-            "label" : "Thakor"
-        },
-        {
-            "value" : "Ravi",
-            "label" : "Ravi"
-        },
-    ]
