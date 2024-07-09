@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd erpnextcopilot && yarn dev",
-    "build": "cd erpnextcopilot && yarn build"
+    "build": "cd erpnextcopilot && yarn install &&yarn build"
   },
   "keywords": [],
   "author": "",
